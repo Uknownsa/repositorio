@@ -14,6 +14,8 @@ import pipi from "./assets/WhatsApp Image 2024-08-17 at 19.54.32.jpeg";
 import boy from "./assets/clip-excited-person-gif-10.gif";
 
 function App() {
+  type Cat = { id: number; label: string }; // Define the correct type
+
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isSecondDialogOpen, setIsSecondDialogOpen] = useState(false);
   const [isThirdDialogOpen, setIsThirdDialogOpen] = useState(false);
@@ -21,10 +23,10 @@ function App() {
   const [isFivethDialogOpen, setIsFivethDialogOpen] = useState(false);
   const [isSixthDialogOpen, setIsSixthDialogOpen] = useState(false);
 
-  const [isNome, setIsNome] = useState(null);
+  const [isNome, setIsNome] = useState<string | null>(null);
 
-  const [selectedCatName, setSelectedCatName] = useState(null);
-  const [selectedCat2Name, setSelectedCat2Name] = useState(null);
+  const [selectedCatName, setSelectedCatName] = useState<Cat | null>(null);
+  const [selectedCat2Name, setSelectedCat2Name] = useState<Cat | null>(null);
 
   const handleClick = () => {
     setIsDialogOpen(false);
@@ -126,7 +128,7 @@ function App() {
                 { id: 5, label: "Robson" },
               ]}
               sx={{ width: 300, height: 200 }}
-              onChange={(event, newValue) => setSelectedCatName(newValue)}
+              onChange={(_, newValue) => setSelectedCatName(newValue)}
               renderInput={(params) => <TextField {...params} label="Gato" />}
             />
             <DialogActions>
@@ -165,7 +167,7 @@ function App() {
                 { id: 5, label: "Pitribi" },
               ]}
               sx={{ width: 300, height: 200 }}
-              onChange={(event, newValue) => setSelectedCat2Name(newValue)}
+              onChange={(_, newValue) => setSelectedCat2Name(newValue)}
               renderInput={(params) => <TextField {...params} label="Gato" />}
             />
             <DialogActions>
@@ -245,7 +247,6 @@ function App() {
       <Dialog open={isSixthDialogOpen}>
         <DialogTitle>Fechou! Te vejo lá gatinha!!!</DialogTitle>
         <DialogContent>
-          {" "}
           <img
             style={{
               marginLeft: 20,
